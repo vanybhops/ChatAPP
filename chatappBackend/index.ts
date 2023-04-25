@@ -28,7 +28,7 @@ app.get('/login', (req, res) => {
   res.send({"session":randomUUID()})
 })
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname,"/assets/index.html"))
+    res.sendFile(path.join(__dirname,"/index.html"))
   })
 app.get('/assets/*', (req:any, res) => {
     res.sendFile(path.join(__dirname,`/assets/${req.params["0"]}`))

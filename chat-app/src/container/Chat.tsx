@@ -64,7 +64,7 @@ export default function Chat(){
                         } className="text-white"> logout </button>
                 </div>
                 <div className="w-full h-full flex flex-col">
-                    <div className="flex p-3 h-20"> {/* chat info */}
+                    <div className="flex p-3 h-20 bg-slate-800 border-b-2 border-slate-600"> {/* chat info */}
                     <h1 className=" text-white flex justify-center items-center w-full">ChatAPP</h1>
                         <div className="ml-auto"> 
                             <img src={upitnik} className="h-16"/>

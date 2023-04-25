@@ -128,4 +128,5 @@ dist
 
 # remove Build and Database from being pushed
 chatappBackend/assets
-chatappBackend/db.sqlite
+chatappBackend/index.html
+db.sqlite
