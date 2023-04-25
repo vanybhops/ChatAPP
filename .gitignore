@@ -127,4 +127,4 @@ dist
 .pnp.*
 
 # remove Build to be included
-chatappDeploy/assets
+chatappBackend/assets
