@@ -51,6 +51,12 @@ export default function Chat(){
             <div className="flex w-screen h-screen">
                 <div className="w-full h-full flex flex-col">
                     <div className="flex p-3 h-20 bg-slate-800 border-b-2 border-slate-600"> {/* chat info */}
+                    <button onClick={_=>{
+                                localStorage.removeItem("session")
+                                location.reload()} 
+                                } className="text-white px-4 h-full rounded-md"> 
+                                logout 
+                            </button>
                     <h1 className=" text-white flex justify-center items-center w-full">ChatAPP</h1>
                         <div className="ml-auto"> 
                             <img src={upitnik}/>
@@ -63,14 +69,8 @@ export default function Chat(){
                         )
                     }
                     </div>
-                    <div className="flex">
-                        <button onClick={_=>{
-                                localStorage.removeItem("session")
-                                location.reload()} 
-                                } className="text-white px-5 mt-0 mb-5 ml-5 bg-slate-600 rounded-md"> 
-                                logout 
-                            </button>
-                        <div className="flex rounded-lg w-full box-border text-white bg-slate-600 left-0 bottom-5 right-0 mt-0 mb-5 ml-1 mr-5 h-16 px-5 max-h-fit"> {/* chat input */}
+                    <div className="flex border-t-2 pt-5 bg-slate-800 border-slate-600">
+                        <div className="flex rounded-lg w-full box-border  text-white bg-slate-600 left-0 bottom-5 right-0 m-5 h-16 px-5 max-h-fit"> {/* chat input */}
                             <textarea className="resize-none p-4 w-full overflow-hidden bg-slate-600" cols={30} rows={1} onKeyUp={handleClick} value={textValue} onChange={e=>handleTextInput(e)}></textarea>
                             <button className="text-cyan-300" onClick={()=>{handleClick()}}>Send</button>
                         </div> 
