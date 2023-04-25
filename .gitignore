@@ -126,5 +126,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# remove Build to be included
+# remove Build and Database from being pushed
 chatappBackend/assets
+chatappBackend/db.sqlite
