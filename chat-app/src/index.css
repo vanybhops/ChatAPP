@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  input {
+      outline: none;
+    }
+  textarea {
+      outline: none;
+    }
+  }
+.animateBorder{
+  position: relative;
+  width: 100%;
+}
+.animateBorder::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width:0;
+}
+.animateBorder:focus-within::after{
+  width: 100%;
+  right: 0;
+  @apply border-b-2 border-blue-400;  
+  transition: width 500ms linear;
+}
+.TopToMid{
+  top:auto;
+}
+
+*::-webkit-scrollbar{
+  background-color: rgb(15 23 42);
+}
+*::-webkit-scrollbar-thumb{
+  border-radius: 2rem;
+  background-color: rgb(71 85 105);
+}
