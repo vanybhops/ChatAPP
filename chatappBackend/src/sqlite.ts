@@ -21,7 +21,7 @@ let getValues = async(command:string)=>{
 }
 
 let getMessages = async()=>
-    await getValues(`SELECT * from Messages ORDER BY messageID DESC LIMIT 50`)
+    await getValues(`SELECT * from Messages ORDER BY messageID DESC`)
 
 
 let getMessageInRange =async (start:number,end:number) =>

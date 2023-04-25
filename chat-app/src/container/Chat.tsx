@@ -69,7 +69,7 @@ export default function Chat(){
                         )
                     }
                     </div>
-                    <div className="flex border-t-2 pt-5 bg-slate-800 border-slate-600">
+                    <div className="flex border-t-2 pt-2 bg-slate-800 border-slate-600">
                         <div className="flex rounded-lg w-full box-border  text-white bg-slate-600 left-0 bottom-5 right-0 m-5 h-16 px-5 max-h-fit"> {/* chat input */}
                             <textarea className="resize-none p-4 w-full overflow-hidden bg-slate-600" cols={30} rows={1} onKeyUp={handleClick} value={textValue} onChange={e=>handleTextInput(e)}></textarea>
                             <button className="text-cyan-300" onClick={()=>{handleClick()}}>Send</button>
