@@ -32,7 +32,7 @@ let createMessage =async (username:string, message:string, sessionId:string) => 
 
     db.run(`
     INSERT INTO Messages (username, message, sessionId)
-    VALUES("${escape(username)}","${escape(message)}","${escape(sessionId)}")
+    VALUES("${username}","${message}","${sessionId}")
     `)
 }
 export { getMessageInRange, getMessages, createMessage }

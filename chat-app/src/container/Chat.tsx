@@ -8,15 +8,15 @@ const CreateChat=(props:any)=>{
     if (type!==localStorage.getItem("session")) {
         return(
             <div className="gap-10 bg-slate-600 max-w-xl break-words w-fit px-5 py-2 rounded-xl">
-                <span className=" text-cyan-300">{unescape(user)}</span>
-                <h2 className="whitespace-pre-line">{unescape(text.trim())}</h2>
+                <span className=" text-cyan-300">{user}</span>
+                <h2 className="whitespace-pre-line">{text.trim()}</h2>
             </div>
         )
     }
     return(
-        <div className="ml-auto flex text-right flex-col bg-slate-600 max-w-xl break-words w-fit px-5 py-2 rounded-xl">
-            <span className="float-right text-cyan-300">{unescape(user)}</span>
-            <h2 className="whitespace-pre-line">{unescape(text.trim())}</h2>
+        <div className="ml-auto flex text-left flex-col bg-slate-600 max-w-xl break-words w-fit px-5 py-2 rounded-xl">
+            <span className="text-cyan-300">{user}</span>
+            <h2 className="whitespace-pre-line">{text.trim()}</h2>
         </div>
     )
 }
