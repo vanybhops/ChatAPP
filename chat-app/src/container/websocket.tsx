@@ -1,2 +1,2 @@
-const websocket = new WebSocket(`ws://${window.location.host}`)
+const websocket = new WebSocket(`wss://${window.location.host}`)
 export default websocket
