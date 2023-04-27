@@ -9,7 +9,9 @@ export default async function eventManager(socket:ws.Server, data:any){
                 messages:poruke
             })
         case "send":
-            createMessage(data.username, data.message, data.sessionId)
+            let message = data.message.trim()
+            if (message==="") break
+            createMessage(data.username, message, data.sessionId)
             socket.clients.forEach(sock=>{
                 sock.send(JSON.stringify({
                     event:"New",
