@@ -1,13 +1,12 @@
 import { eventManager } from './src'
-import { randomUUID } from 'crypto'
+
 import express, { Request } from'express'
 import ws from "ws"
 import cors from "cors"
 import path from 'path'
+import uuid4 from 'uuid4'
 const app = express()
 const port = 3000
-
-
 const wsServer = new ws.Server({noServer:true})
 wsServer.on('connection', async socket => {
     socket.send(await eventManager(wsServer,{"event":"init"}))
@@ -25,7 +24,7 @@ wsServer.on('connection', async socket => {
 });
 app.use(cors())
 app.get('/login', (req, res) => {
-  res.send({"session":randomUUID()})
+  res.send({"session":uuid4()})
 })
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname,"/index.html"))
