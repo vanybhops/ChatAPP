@@ -85,7 +85,7 @@ export default function Chat() {
                     </div>
                 </div>
 
-                <div className="ChatBox flex flex-col-reverse w-full text-white p-10 text-xl scroll-m-1 gap-10 overflow-y-scroll" onScroll={onScroll}> {/* messages */}
+                <div className="ChatBox flex flex-col-reverse w-full h-full text-white p-10 text-xl scroll-m-1 gap-10 overflow-y-scroll" onScroll={onScroll}> {/* messages */}
                     {
                         loadedMessages.map((message: any) => <CreateChat type={message.sessionId} text={message.message} user={message.username} />
                         )
