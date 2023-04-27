@@ -10,24 +10,22 @@ db.run(`
     );`
 );
 
-let getValues = async(command:string)=>{
+let getValues = async (command: string) => {
     return new Promise(async (resolve, reject) => {
-        db.all(command,(error, data:any)=>{
+        db.all(command, (error, data: any) => {
             if (error) reject(error)
             resolve(data)
         })
     })
 }
 
-let getMessages = async()=>
-    await getValues(`SELECT * from Messages ORDER BY messageID DESC`)
+let getMessages = async () =>
+    await getValues(`SELECT * from Messages ORDER BY messageID DESC LIMIT 50`)
 
+let getMessageInRange = async (start: number) =>
+    await getValues(`SELECT * from Messages WHERE messageID<=${start} ORDER BY messageID DESC LIMIT 50`)
 
-let getMessageInRange =async (start:number,end:number) =>
-    await getValues(`SELECT * from Messages WHERE messageID>=${start} AND messageID<=${end}`)
-
-
-let createMessage =async (username:string, message:string, sessionId:string) => {
+let createMessage = async (username: string, message: string, sessionId: string) => {
     db.run(`
     INSERT INTO Messages (username, message, sessionId)
     VALUES("${escape(username)}","${escape(message)}","${escape(sessionId)}")

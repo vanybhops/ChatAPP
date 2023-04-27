@@ -127,6 +127,8 @@ dist
 .pnp.*
 
 # remove Build and Database from being pushed
-chatappBackend/assets
-chatappBackend/index.html
+*.zip
 db.sqlite
+chatappBackend/assets
+chatappBackend/src/*.js
+chatappBackend/index.html

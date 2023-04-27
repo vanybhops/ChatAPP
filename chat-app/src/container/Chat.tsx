@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import upitnik from "../assets/upitnik.svg"
 import websocket from "./websocket";
 
@@ -22,11 +22,20 @@ const CreateChat=(props:any)=>{
 }
 export default function Chat(){
     const [textValue,setTextValue] = useState("")
-    const [lastMessage, setLastMessage] = useState<any>([])
+    const [loadedMessages, setloadedMessages] = useState<any>([])
+    const [lastMessage, setLastMessage] = useState(0)
+    const scrollDiv = useRef(null);
     useEffect(()=>{
         websocket.onmessage = (message)=>{
             const messages = JSON.parse(message.data)
-            setLastMessage((msg:any)=>[...messages, ...msg])
+            if (messages.event==="Old") {
+                console.log(messages.message)
+                setLastMessage(messages.messages.at(-1).messageID)
+                setloadedMessages((msg:any)=>[...msg, ...messages.messages])
+            }
+            if (messages.event==="New") {
+                setloadedMessages((msg:any)=>[...messages.messages, ...msg])                
+            }
         }
         return () => websocket.close();
     },[])
@@ -46,7 +55,18 @@ export default function Chat(){
     const handleTextInput = (e:React.ChangeEvent<HTMLTextAreaElement>)=>{
         setTextValue(e.target.value)
     }
-    return(
+    const onScroll = () => {
+        if (lastMessage===1)return
+        if (scrollDiv.current) {
+            const {scrollTop, clientHeight, scrollHeight } = scrollDiv.current 
+            if(-scrollTop + clientHeight === scrollHeight)
+                websocket.send(JSON.stringify({
+                    event:"load",
+                    lastMessage : lastMessage
+                }))
+        }
+      };   
+      return(
         <nav>
             <div className="flex w-screen h-screen">
                 <div className="w-full h-full flex flex-col">
@@ -63,9 +83,9 @@ export default function Chat(){
                         </div>
                     </div> 
 
-                    <div className="ChatBox flex flex-col-reverse h-full text-white p-10 text-xl scroll-m-1 gap-10 overflow-y-auto"> {/* messages */}
+                    <div className="ChatBox flex flex-col-reverse h-full text-white p-10 text-xl scroll-m-1 gap-10 overflow-y-scroll" ref={scrollDiv} onScroll={onScroll}> {/* messages */}
                     {
-                        lastMessage.map((message:any)=><CreateChat type={message.sessionId} text={message.message} user={message.username}/>
+                        loadedMessages.map((message:any)=><CreateChat type={message.sessionId} text={message.message} user={message.username}/>
                         )
                     }
                     </div>
