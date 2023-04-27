@@ -29,7 +29,6 @@ export default function Chat(){
         websocket.onmessage = (message)=>{
             const messages = JSON.parse(message.data)
             if (messages.event==="Old") {
-                console.log(messages.message)
                 setLastMessage(messages.messages.at(-1).messageID)
                 setloadedMessages((msg:any)=>[...msg, ...messages.messages])
             }

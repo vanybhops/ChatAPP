@@ -24,7 +24,6 @@ export default async function eventManager(socket:ws.Server, data:any){
             break
         case "load":
             let messages = await getMessageInRange(data.lastMessage)
-            console.log(messages)
             return JSON.stringify({
                 event:"Old",
                 messages: messages
